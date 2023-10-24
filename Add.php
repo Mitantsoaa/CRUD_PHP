@@ -28,6 +28,6 @@ if($_POST){
                     $file = $_FILES['photo']['tmp_name'];
                     $nomdestination = '/image';
                     move_uploaded_file($file, SITE_ROOT.$nomdestination.'/'.$_FILES['photo']['name']);
-        header('Location: http://localhost/DTC/Eval/eval-php-bdd-Mitantsoaa/List.php');
+        header('Location: /List.php');
     }
 }

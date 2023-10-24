@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
     include 'connexion.php';
-    ;
 
     function getDataById($connexion,$id){
         $sql = "SELECT * FROM personnel WHERE id=".$id;
@@ -13,7 +12,7 @@ declare(strict_types=1);
     function deleteData($connexion,$id){
         $sql =  "DELETE FROM personnel WHERE id =".$id;
         $query = mysqli_query($connexion,$sql);
-        header('Location: http://localhost/DTC/Eval/eval-php-bdd-Mitantsoaa/List.php');
+        header('Location: /List.php');
     }
 
     function updateData($connexion, $name,$mail,$phone,$photo,$id){
@@ -23,7 +22,7 @@ declare(strict_types=1);
         $file = $photo['tmp_name'];
                     $nomdestination = '/image';
                     move_uploaded_file($file, SITE_ROOT.$nomdestination.'/'.$_FILES['photo']['name']);
-        header('Location: http://localhost/DTC/Eval/eval-php-bdd-Mitantsoaa/List.php');
+        header('Location: /List.php');
     }
 
     function getAllData($connexion){
@@ -36,6 +35,11 @@ declare(strict_types=1);
         $sql = "SELECT COUNT(*) FROM personnel";
         $res = mysqli_query($connexion,$sql);
         return mysqli_fetch_all($res);
+    }
+
+    function getAllDataPerPage($connexion){
+        $sql = "SELECT * FROM personnel LIMIT 0, 10";
+        return mysqli_query($connexion,$sql);
     }
 
     function isName(String $nom)
